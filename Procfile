@@ -1,1 +1,1 @@
-bot: bundle exec ruby deboordtwitterbot.rb
+bot: bundle exec ruby debordtwitterbot.rb
