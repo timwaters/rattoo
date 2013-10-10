@@ -1,7 +1,10 @@
 require 'yaml'
 require 'twitter'
 
-config = YAML.load(open("config.yml"))
+config = nil
+if File.exist?("config.yml")
+  config = YAML.load(open("config.yml"))
+end
 Twitter.configure do |c|
   c.consumer_key =  ENV["CONSUMER_KEY"] || config["CONSUMER_KEY"]
   c.consumer_secret = ENV["CONSUMER_SECRET"] || config["CONSUMER_SECRET"]
