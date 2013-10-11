@@ -15,7 +15,7 @@ Twitter.configure do |c|
 end
 
 markov = MarkyMarkov::TemporaryDictionary.new
-markov.parse_file "/home/tim/projects/rattoo/debord.txt"
+markov.parse_file "debord.txt"
 
 raw_text = markov.generate_25_words
 
