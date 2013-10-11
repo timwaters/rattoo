@@ -1,5 +1,7 @@
 require 'yaml'
 require 'twitter'
+require 'marky_markov'
+
 
 config = nil
 if File.exist?("config.yml")
@@ -12,13 +14,15 @@ Twitter.configure do |c|
   c.oauth_token_secret =  ENV["OAUTH_TOKEN_SECRET"] || config["OAUTH_TOKEN_SECRET"]
 end
 
+markov = MarkyMarkov::TemporaryDictionary.new
+markov.parse_file "/home/tim/projects/rattoo/debord.txt"
+
+raw_text = markov.generate_25_words
+
+tweet =  raw_text[0..132]
 
 client = Twitter::Client.new
 
-puts "client starting"
+puts "sending text: " + tweet
+client.update(tweet)
 
-Twitter.search("psychogeography", :count => 3, :result_type => "recent").results.map do |status|
-  puts "#{status.from_user}: #{status.text}"
-end
-
-#client.update("But the irreversible time of the bourgeois economy eradicates these vestiges on every corner of the globe.")
