@@ -2,6 +2,19 @@ require 'yaml'
 require 'twitter'
 require 'marky_markov'
 
+def truncate(text, length = 30)
+if text
+  l = length - 3
+  chars = text.chars
+  if chars.length > length
+    new_text = chars[0...l].join + "..."
+    else
+    new_text = text
+    end
+  return new_text
+end
+end
+
 
 config = nil
 if File.exist?("config.yml")
@@ -20,9 +33,9 @@ end
 #
 markov = MarkyMarkov::TemporaryDictionary.new
 markov.parse_file "debord.txt"
-raw_text = markov.generate_25_words
-tweet =  raw_text[0..132]
-
+raw_text = markov.generate_23_words
+tweet_length = (110..135).to_a.sample
+tweet = truncate(raw_text, tweet_length)
 
 client = Twitter::Client.new
 
