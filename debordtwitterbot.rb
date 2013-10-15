@@ -3,16 +3,15 @@ require 'twitter'
 require 'marky_markov'
 
 def truncate(text, length = 30)
-if text
-  l = length - 3
+  l = text[0..length].rindex(" ")
   chars = text.chars
   if chars.length > length
     new_text = chars[0...l].join + "..."
-    else
+  else
     new_text = text
-    end
+  end
+  
   return new_text
-end
 end
 
 
