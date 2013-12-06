@@ -1,0 +1,18 @@
+Rattoo
+
+by tim waters
+
+This is a Twitter Bot which is meant to be periodically called to tweet and send replies based on a radical text. It uses markov chains to detourn the text to possibly come up with interesting phrases.
+
+
+It is written in Ruby, using the marky_markov and twitter gems.
+
+To Run:
+
+Either with a config file or Environment variables with the Twitter authentication text
+
+Either have a config.yml file in the directory (see config.example.yml)
+or use environment variables in your system with the same keys
+
+For example for heroku:
+heroku config:set CONSUMER_KEY=abc123
